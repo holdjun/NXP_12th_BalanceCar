@@ -16,17 +16,21 @@
 #include "Run.h"
 #include "dmacnt.h"
 #include "Filter.h"
-#include "mymath.h"
-
+//控制周期计数,标志位
 uint8_t Threshold_Temper = 0;
 uint8_t g_nSpeedControlCount = 0,
         g_nDirectionControlCount = 0,
         g_nSpeedControlPeriod = 0,
         g_nDirectionControlPeriod = 0;
-
-uint8_t *Pointer_P_Pixels_Temp, *Pointer_P_DMA = P_DMA, Now_H = 0, *Pointer_Threshold = Thre, rownum = 0, count_4 = 0;
-uint16_t *Pointer_Camera_Valid_Row = Camera_Valid_Row, *Pointer_Camera_Valid_Line = Camera_Valid_Line;
-
+uint16_t rownum = 0, count_4 = 0;
+uint8_t *Pointer_P_Pixels_Temp,
+    *Pointer_P_DMA = P_DMA,
+    Now_H = 0;
+uint16_t *Pointer_Camera_Valid_Row = Camera_Valid_Row,
+         *Pointer_Camera_Valid_Line = Camera_Valid_Line;
+uint8_t *Pointer_Threshold = Thre;
+#include "mymath.h"
+//场中断
 void VIsr(void)
 {
     rownum = 0;
@@ -36,7 +40,7 @@ void VIsr(void)
     NVIC_EnableIRQ(HIsr_NVIC);
     GPIO_ClearITPendingBit(VIsr_Port, VIsr_Pin);
 }
-
+//行中断
 void HIsr(void)
 {
     rownum++;
@@ -62,6 +66,7 @@ void HIsr(void)
     {
         P_Gather_Flag_OK = 1;
         NVIC_DisableIRQ(HIsr_NVIC);
+        //DMA_SetEnableReq (DMA_CH0 , DISABLE);
     }
     GPIO_ClearITPendingBit(HIsr_Port, HIsr_Pin);
 }
@@ -72,6 +77,9 @@ void DMA0_IRQHandler(void)
     uint8_t Threshold_Temper_F = 0;
     for (count_4 = 0; count_4 < 200; count_4++)
     {
+        //if((count_4>170 )&&Now_H<Final_Line)
+        //Threshold_Temper_F=Threshold_Temper-15;
+        //else
         Threshold_Temper_F = Threshold_Temper;
         if (Threshold_Temper_F < 117)
             Threshold_Temper_F = 117;
@@ -90,6 +98,7 @@ void DMA0_IRQHandler(void)
 }
 void PIT1_IRQHandler(void)
 {
+    //编码器临时值
     int16_t Encoder_Left_Temp, Encoder_Right_Temp;
     g_nSpeedControlCount++;
     g_nDirectionControlCount++;
@@ -114,6 +123,8 @@ void PIT1_IRQHandler(void)
             Encoder_Right_Temp = -DMACNT_GetValue(DMA_CH2);
         else
             Encoder_Right_Temp = DMACNT_GetValue(DMA_CH2);
+        //Encoder_Left[2]=Encoder_Left_Temp;
+        //Encoder_Right[2]=Encoder_Right_Temp;
         Encoder_Left[2] = L_Encoder_Average_Filter(Encoder_Left_Temp);
         Encoder_Right[2] = R_Encoder_Average_Filter(Encoder_Right_Temp);
         g_CarSpeed = Speed_Add(Encoder_Left[2], Encoder_Right[2]);
@@ -124,6 +135,7 @@ void PIT1_IRQHandler(void)
         SpeedControl();
         g_nSpeedControlCount = 0;
     }
+    //平滑输出
     SpeedControlOutput();
     DirectionControlOutput();
     MotorOutput();

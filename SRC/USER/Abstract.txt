@@ -1,0 +1,19 @@
+超核V2.4 K60 原子核核心版 Demo 程序 
+
+库函数版本: 超核K60V2.4 版本
+淘宝       http://upcmcu.taobao.com 
+
+
+适用的处理器
+**     Processors:          MK60DN512ZVLL10
+**                          MK60DX256ZVLL10
+**                          MK60DN256ZVLL10
+**                          MK60DN512ZVLQ10
+**                          MK60DN256ZVLQ10
+**                          MK60DX256ZVLQ10
+**                          MK60DN512ZVMC10
+**                          MK60DN256ZVMC10
+**                          MK60DX256ZVMC10
+**                          MK60DN512ZVMD10
+**                          MK60DX256ZVMD10
+**                          MK60DN256ZVMD10

@@ -244,14 +244,7 @@ uint16_t Podao_bisai = 0;
 uint8_t LStart[70]; //中线点储存数组
 uint8_t RStart[70]; //右线点储存数组
 uint8_t fixValue[70] =
-    {
-        //    122,121,120,119,118,117,116,114,113,113,
-        //    111,109,108,107,104,104,102,101,99,99,
-        //    97,95,94,93,90,88,86,85,83,82,
-        //    81,79,78,76,75,74,72,71,69,68,
-        //    68,66,65,63,62,60,58,55,55,53,
-        //    52,51,48,48,46,44,44,41,40,39,
-        //    38,37,36,35,34,33,32,31,30,29,
+{
         135, 135, 133, 132, 131, 130, 129, 128, 127, 127,
         125, 124, 122, 121, 120, 120, 118, 116, 115, 114,
         113, 111, 110, 109, 107, 106, 105, 103, 102, 101,
@@ -1671,7 +1664,7 @@ void FieldProcess() //图像场处理函数内联
                 {
                     R_Obstacle_Count++;
                     if (R_Obstacle_Count == 3)
-                    {                        
+                    {
                         Obstacle_num++;
                         R_Obstacle_Count = 0;
                         R_Obstacle_Flag = 0;
@@ -1780,7 +1773,7 @@ void FieldProcess() //图像场处理函数内联
                     if (Ramp_Flag == 0 && L_black_Memory1 > 20)
                     {
                         //setText用户自定义("-" + L_black_Memory1 + "-" + L_black_Memory2 + "-" + L_black_Slope1 + "-" + L_black_Slope2);
-                        if (L_black_Slope2 > L_black_Slope1 + Ramp_Down_Num *0.01 && L_black_Slope2 < L_black_Slope1 + Ramp_Up_Num*0.01 && Ramp_Flag == 0 && L_black_Memory2 - L_black_Memory1 > 14)
+                        if (L_black_Slope2 > L_black_Slope1 + Ramp_Down_Num * 0.01 && L_black_Slope2 < L_black_Slope1 + Ramp_Up_Num * 0.01 && Ramp_Flag == 0 && L_black_Memory2 - L_black_Memory1 > 14)
                         {
                             Ramp_New++;
                             //setText用户自定义("满足1");
@@ -1840,7 +1833,7 @@ void FieldProcess() //图像场处理函数内联
                     if (Ramp_Flag == 0 && L_black_Memory1 > 20)
                     {
                         //setText用户自定义("-" + R_black_Memory1 + "-" + R_black_Memory2 + "-" + R_black_Slope1 + "-" + R_black_Slope2);
-                        if (R_black_Slope1 > R_black_Slope2 + Ramp_Down_Num *0.01 && R_black_Slope1 < R_black_Slope2 + Ramp_Up_Num *0.01 && Ramp_Flag == 0 && R_black_Memory2 - R_black_Memory1 > 14)
+                        if (R_black_Slope1 > R_black_Slope2 + Ramp_Down_Num * 0.01 && R_black_Slope1 < R_black_Slope2 + Ramp_Up_Num * 0.01 && Ramp_Flag == 0 && R_black_Memory2 - R_black_Memory1 > 14)
                         {
                             Ramp_New++;
                             //setText用户自定义("满足2");
@@ -1970,7 +1963,7 @@ void FieldProcess() //图像场处理函数内联
                                 Turning_Point(i, 0);
                             else if (guai_switch_flag == 1)
                                 Turning_Point_nei(i, 0);
-                            
+
                             if (R_Turning_Point_Flag == 1)
                             {
                                 Loop_R_guai = i;
@@ -1984,7 +1977,7 @@ void FieldProcess() //图像场处理函数内联
                                 Turning_Point(i, 1);
                             else if (guai_switch_flag == 1)
                                 Turning_Point_nei(i, 1);
-                            
+
                             if (L_Turning_Point_Flag == 1)
                             {
                                 Loop_L_guai = i;
@@ -2006,7 +1999,7 @@ void FieldProcess() //图像场处理函数内联
                                 Turning_Point(i, 0);
                             else if (guai_switch_flag == 1)
                                 Turning_Point_nei(i, 0);
-                            
+
                             //Turning_Point(i, 0);
 
                             if (R_Turning_Point_Flag == 1)
@@ -2020,7 +2013,7 @@ void FieldProcess() //图像场处理函数内联
                                 Turning_Point(i, 1);
                             else if (guai_switch_flag == 1)
                                 Turning_Point_nei(i, 1);
-                            
+
                             //Turning_Point(i, 1);
 
                             if (L_Turning_Point_Flag == 1)
@@ -2336,7 +2329,7 @@ void FieldProcess() //图像场处理函数内联
                         //    }
                         //}
                     }
-                    else if ( Ring_Dir_Flag[Ring_Dir_num] == 2)
+                    else if (Ring_Dir_Flag[Ring_Dir_num] == 2)
                     {
                         //if (Loop_R_guai > 0)
                         //{
@@ -2720,7 +2713,7 @@ void FieldProcess() //图像场处理函数内联
                             }
                         }
                     }
-                    
+
                     else if (Ring_Dir_Flag[Ring_Dir_num] == 4)
                     {
                         if (Loop_R_guai > 0 && Loop_R_guai < Loop_L_Max && Loop_Last_R_guai > Loop_R_guai)
@@ -2820,8 +2813,8 @@ void FieldProcess() //图像场处理函数内联
                             {
                                 for (i = 0; i < Last_Line; i++)
                                 {
-                                    
-                                    LCenter[i] = (byte)(R_black[i] + (L_black[i] - R_black[i]) * 10.0 / laxian_k );
+
+                                    LCenter[i] = (byte)(R_black[i] + (L_black[i] - R_black[i]) * 10.0 / laxian_k);
                                     //Bend_Repair(i);
                                 }
                             }
@@ -2829,12 +2822,11 @@ void FieldProcess() //图像场处理函数内联
                             {
                                 for (i = 0; i < Last_Line; i++)
                                 {
-                                    LCenter[i] = (byte)(L_black[i] - (L_black[i] - R_black[i]) * 10.0/ laxian_k);
+                                    LCenter[i] = (byte)(L_black[i] - (L_black[i] - R_black[i]) * 10.0 / laxian_k);
                                     //Bend_Repair(i);
                                 }
                             }
-                        }    
-                        
+                        }
                     }
                 }
 
@@ -3344,7 +3336,7 @@ void MotorOutput(void)
         else if (Mode_Choose == 2) //固定占空比调试
         {
             L_ControlOut = 2500;
-            R_ControlOut =2500+ftm_add;
+            R_ControlOut = 2500 + ftm_add;
         }
         else if (Mode_Choose == 3) //陀螺仪水平检测
         {
@@ -3392,9 +3384,8 @@ void MotorOutput(void)
     {
         if (R_ControlOut >= 0)
             R_ControlOut = R_ControlOut + ftm_add;
-        else if (R_ControlOut <0)
+        else if (R_ControlOut < 0)
             R_ControlOut = R_ControlOut - ftm_add;
-        
     }
 
     if (L_ControlOut > 9997)
@@ -3668,45 +3659,44 @@ void Run(void)
 
         if (Ring_Dir_Flag[Ring_Dir_num] == 0 || Ring_Dir_Flag[Ring_Dir_num] == 1)
         {
-            if (Ring_State_Flag == 3 && Set_Speed >=300)
+            if (Ring_State_Flag == 3 && Set_Speed >= 300)
                 Direction_PID.Kp = small_p;
-            
+
             if (small_state_2 == 1 && Ring_State_Flag == 2)
             {
-                Direction_PID.Kp =  small_state_2_p;
+                Direction_PID.Kp = small_state_2_p;
             }
         }
-		if (Ring_Dir_Flag[Ring_Dir_num] == 2 || Ring_Dir_Flag[Ring_Dir_num] == 3)
+        if (Ring_Dir_Flag[Ring_Dir_num] == 2 || Ring_Dir_Flag[Ring_Dir_num] == 3)
         {
-			  if (Ring_State_Flag == 3 && Set_Speed >=300)
+            if (Ring_State_Flag == 3 && Set_Speed >= 300)
                 Direction_PID.Kp = mid_p;
-//            if (Ring_State_Flag >= 3)
-//            {
-//                MidRing_Count++;
-//                if (BigRing_Count > 10)
-//                {
-//                    //GPIO_WriteBit(PTC, GPIO_Pin_12, Bit_SET);
-//                    if (Ring_Dir_Flag[Ring_Dir_num] == 2)
-//                        Mid_Line = 95;
-//                    else if (Ring_Dir_Flag[Ring_Dir_num] == 3)
-//                        Mid_Line = 105;
-//                }
-//			}
+            //            if (Ring_State_Flag >= 3)
+            //            {
+            //                MidRing_Count++;
+            //                if (BigRing_Count > 10)
+            //                {
+            //                    //GPIO_WriteBit(PTC, GPIO_Pin_12, Bit_SET);
+            //                    if (Ring_Dir_Flag[Ring_Dir_num] == 2)
+            //                        Mid_Line = 95;
+            //                    else if (Ring_Dir_Flag[Ring_Dir_num] == 3)
+            //                        Mid_Line = 105;
+            //                }
+            //			}
         }
-		else
-			MidRing_Count=0;
+        else
+            MidRing_Count = 0;
         if (Ring_Dir_Flag[Ring_Dir_num] == 4 || Ring_Dir_Flag[Ring_Dir_num] == 5)
         {
-		    if (Ring_State_Flag ==2 && Set_Speed >=300)
+            if (Ring_State_Flag == 2 && Set_Speed >= 300)
             {
-				 Direction_PID.Kp = big_p;
-				
-			}				
-			
+                Direction_PID.Kp = big_p;
+            }
+
             if (Ring_State_Flag >= 3)
             {
                 BigRing_Count++;
-				
+
                 if (BigRing_Count > 15)
                 {
                     //GPIO_WriteBit(PTC, GPIO_Pin_12, Bit_SET);
@@ -3719,15 +3709,15 @@ void Run(void)
         }
         else
             BigRing_Count = 0;
-        
+
         if (Ring_Dir_num == small_state_num && Ring_State_Flag == 2)
-            {
-                Direction_PID.Kp =  small_state_2_p;
-            }
-//        if (Ring_Dir_num == small_state_num)
-//        {
-//            Set_Speed = small_speed;
-//        }
+        {
+            Direction_PID.Kp = small_state_2_p;
+        }
+        //        if (Ring_Dir_num == small_state_num)
+        //        {
+        //            Set_Speed = small_speed;
+        //        }
     }
 
     /******************特定元素减速********************/
